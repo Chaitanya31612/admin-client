@@ -1,7 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./routes";
 import reportWebVitals from "./reportWebVitals";
+
+const theme = {
+  colors: {
+    primary: "#003366",
+    lightGrey: "#eee",
+    darkGrey: "#333",
+  },
+  defaultfontSize: "16px",
+};
 
 ReactDOM.render(
   <React.StrictMode>
