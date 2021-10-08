@@ -23,5 +23,8 @@ export default Links;
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.lightGrey};
-  padding: 1.1rem;
+
+  a:hover {
+    background-color: ${({ theme }) => theme.colors.darkPrimary};
+  }
 `;

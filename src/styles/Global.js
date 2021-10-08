@@ -10,15 +10,15 @@ const GlobalStyle = createGlobalStyle`
   
   ::-webkit-scrollbar {
     height: 8px;
-    width: 12px;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f1f1e5;
+    background: #f1f1f1;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgb(107, 107, 107);
+    background: #ccc;
     border-radius: 5px;
   }
 

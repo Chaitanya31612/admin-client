@@ -32,6 +32,7 @@ export const LinksMenu = styled.div`
 export const Image = styled.img`
   width: 10;
   object-fit: cover;
+  margin-left: 10px;
 `;
 
 export const FontSize = styled.div`

@@ -11,11 +11,15 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/Global";
 
 import Homepage from "../pages/Homepage";
+import AdminPanel from "../pages/Admin";
 
 const theme = {
   colors: {
     primary: "#003366",
+    lightPrimary: "#00468C",
+    darkPrimary: "#001933",
     lightGrey: "#eee",
+    lightGrey1: "#f9f9f9",
     darkGrey: "#333",
   },
   defaultfontSize: "16px",
@@ -45,6 +49,9 @@ export default function App() {
             <Redirect exact from="/" to="/home" />
             <Route exact path="/home">
               <Homepage />
+            </Route>
+            <Route exact path="/admin">
+              <AdminPanel />
             </Route>
             <Route>404</Route>
           </Switch>
