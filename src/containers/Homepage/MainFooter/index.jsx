@@ -1,12 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { StyledFooter } from "../../../styles/components/Footer.styled";
 
 const MainFooter = () => {
+  const footer = useSelector((state) => state.siteInfo.footer);
+
   return (
     <StyledFooter>
-      <p>
-        Copyright &copy; 2021 DCRUST Learning Platform. All Rights Reserved.
-      </p>
+      <p>{footer}</p>
     </StyledFooter>
   );
 };

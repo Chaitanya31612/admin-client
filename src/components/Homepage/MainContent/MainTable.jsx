@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Table, TableHeading } from "../../styles/components/MainTable.styled";
-import { Container } from "../../styles/utilities/Container.styled";
+import {
+  Table,
+  TableHeading,
+} from "../../../styles/components/MainTable.styled";
+import { Container } from "../../../styles/utilities/Container.styled";
 
 const MainTable = ({ subject: { id, name, topics } }) => {
   return (

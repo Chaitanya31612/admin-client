@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,21 +6,32 @@ import {
   Redirect,
 } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { setSiteDetails } from "../redux/actions/siteInfo";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/Global";
 
 import Homepage from "../pages/Homepage";
-import AdminPanel from "../pages/Admin";
+import LayoutComponent from "../components/Admin/LayoutComponent";
+import { AdminDashboard, MenuLinksContainer } from "../containers/Admin";
+import axios from "axios";
 
 const theme = {
   colors: {
     primary: "#003366",
     lightPrimary: "#00468C",
+    lightPrimary1: "#1A69B8",
     darkPrimary: "#001933",
+    lightBlue: "#8ab4f8",
+    darkBlue: "#4485ee",
     lightGrey: "#eee",
     lightGrey1: "#f9f9f9",
+    lightGrey2: "#e5e5e5",
+    lightGrey3: "#F4F1F1",
     darkGrey: "#333",
+    darkGrey1: "#444",
+    darkGrey2: "#222",
   },
   defaultfontSize: "16px",
   increaseFont: () => {},
@@ -29,6 +40,23 @@ const theme = {
 };
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // console.log(process.env.REACT_APP_BASE_URL);
+    const getDetails = async () => {
+      const details = await axios
+        .get(`${process.env.REACT_APP_BASE_URL}/api/getsitedata`)
+        .then((response) => response.data)
+        .catch((e) => console.log(e));
+
+      dispatch(setSiteDetails(details[0]));
+      // console.log(details);
+    };
+
+    getDetails();
+  }, []);
+
   const [fontSize, setfontSize] = useState(theme.defaultfontSize);
   const increaseFont = () => {
     setfontSize(parseInt(fontSize) + 1 + "px");
@@ -47,12 +75,24 @@ export default function App() {
         <MainWrapper>
           <Switch>
             <Redirect exact from="/" to="/home" />
+
             <Route exact path="/home">
               <Homepage />
             </Route>
-            <Route exact path="/admin">
-              <AdminPanel />
+
+            <Redirect exact from="/admin" to="/admin/dashboard" />
+            <Route exact path="/admin/dashboard">
+              <AdminDashboard />
             </Route>
+
+            <Route exact path="/admin/menus/:option">
+              <MenuLinksContainer />
+            </Route>
+
+            <Route exact path="/test">
+              <LayoutComponent />
+            </Route>
+
             <Route>404</Route>
           </Switch>
         </MainWrapper>

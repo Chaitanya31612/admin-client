@@ -1,9 +1,7 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import MainFooter from "../../containers/Homepage/Footer";
-import MainContent from "../../containers/Homepage/MainContent";
-import MainHeader from "../../containers/Homepage/MainHeader";
+
+import { MainHeader, MainContent, MainFooter } from "../../containers/Homepage";
 
 const Homepage = () => {
   return (

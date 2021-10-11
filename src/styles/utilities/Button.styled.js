@@ -18,7 +18,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Link = styled.a`
+export const MenuLink = styled.a`
   color: ${(props) => props.color || "#222"};
   text-decoration: none;
   cursor: pointer;

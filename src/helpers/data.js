@@ -1,22 +1,66 @@
+// export const examLinks = [
+//   "Gate",
+//   "CSIR UGC NET",
+//   "ISRO",
+//   "BITSAT",
+//   "IES",
+//   "BARC",
+//   "Sail",
+//   "ESE",
+//   "JEST",
+//   "University Subjects",
+// ];
+
 export const examLinks = [
-  "Gate",
-  "CSIR UGC NET",
-  "ISRO",
-  "BITSAT",
-  "IES",
-  "BARC",
-  "Sail",
-  "ESE",
-  "JEST",
-  "University Subjects",
+  {
+    name: "Gate",
+    link: "#",
+  },
+  {
+    name: "CSIR UGC NET",
+    link: "#",
+  },
+  {
+    name: "ISRO",
+    link: "#",
+  },
+  {
+    name: "BITSAT",
+    link: "#",
+  },
+  {
+    name: "IES",
+    link: "#",
+  },
+  {
+    name: "BARC",
+    link: "#",
+  },
+  {
+    name: "Sail",
+    link: "#",
+  },
+  {
+    name: "ESE",
+    link: "#",
+  },
+  {
+    name: "JEST",
+    link: "#",
+  },
+  {
+    name: "University Subjects",
+    link: "#",
+  },
 ];
 
 export const subjects = [
   {
-    id: 1,
+    sno: 1,
     name: "Operating Systems",
     topics: [
       {
+        sno: 1,
         topic: "Fragmentation",
         subtopics: [
           {
@@ -30,6 +74,7 @@ export const subjects = [
         ],
       },
       {
+        sno: 2,
         topic: "CPU Scheduling",
         subtopics: [
           {
@@ -39,6 +84,7 @@ export const subjects = [
         ],
       },
       {
+        sno: 3,
         topic: "Process Scheduling",
         subtopics: [
           {
@@ -48,6 +94,7 @@ export const subjects = [
         ],
       },
       {
+        sno: 4,
         topic: "CPU Scheduling",
         subtopics: [
           {
@@ -59,10 +106,11 @@ export const subjects = [
     ],
   },
   {
-    id: 2,
+    sno: 2,
     name: "Computer Networks",
     topics: [
       {
+        sno: 1,
         topic: "Fragmentation",
         subtopics: [
           {
@@ -78,42 +126,42 @@ export const subjects = [
     ],
   },
   {
-    id: 3,
+    sno: 3,
     name: "DBMS",
     topics: [],
   },
   {
-    id: 4,
+    sno: 4,
     name: "Cryptography",
     topics: [],
   },
   {
-    id: 5,
+    sno: 5,
     name: "Blockchain",
     topics: [],
   },
   {
-    id: 6,
+    sno: 6,
     name: "Compiler Design",
     topics: [],
   },
   {
-    id: 7,
+    sno: 7,
     name: "OOPS",
     topics: [],
   },
   {
-    id: 8,
+    sno: 8,
     name: "Analysis of Algorithms",
     topics: [],
   },
   {
-    id: 9,
+    sno: 9,
     name: "Data Structures and Algorithms",
     topics: [],
   },
   {
-    id: 10,
+    sno: 10,
     name: "Artificial Intelligence",
     topics: [],
   },

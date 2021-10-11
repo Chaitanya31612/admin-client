@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MainTable from "../../../components/MainContent/MainTable";
-import SideContentBar from "../../../components/MainContent/SideContentBar";
+import { useSelector } from "react-redux";
+import { MainTable, SideContentBar } from "../../../components/Homepage";
 
 const MainContent = () => {
   const [subject, setSubject] = useState({});

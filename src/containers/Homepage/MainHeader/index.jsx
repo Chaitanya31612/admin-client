@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Accessibility from "../../../components/MainHeader/Accessibility";
-import Links from "../../../components/MainHeader/Links";
-import MainHeaderLogo from "../../../components/MainHeader/MainHeaderLogo";
+import {
+  Accessibility,
+  Links,
+  MainHeaderLogo,
+} from "../../../components/Homepage";
 
 const MainHeader = () => {
   return (

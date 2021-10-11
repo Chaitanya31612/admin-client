@@ -5,7 +5,7 @@ import {
   FontSize,
   PageLink,
   Search,
-} from "../../styles/components/Header.styled";
+} from "../../../styles/components/Header.styled";
 
 import { ThemeContext } from "styled-components";
 
