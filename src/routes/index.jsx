@@ -16,6 +16,9 @@ import Homepage from "../pages/Homepage";
 import LayoutComponent from "../components/Admin/LayoutComponent";
 import { AdminDashboard, MenuLinksContainer } from "../containers/Admin";
 import axios from "axios";
+import SubjectsContainer from "../containers/Admin/SubjectsContainer";
+import VideoDetailsContainer from "../containers/Admin/VideoDetailsContainer";
+import OtherDetailsContainer from "../containers/Admin/OtherDetailsContainer";
 
 const theme = {
   colors: {
@@ -89,8 +92,16 @@ export default function App() {
               <MenuLinksContainer />
             </Route>
 
-            <Route exact path="/test">
-              <LayoutComponent />
+            <Route exact path="/admin/subject/:option">
+              <SubjectsContainer />
+            </Route>
+
+            <Route exact path="/admin/details/:option">
+              <VideoDetailsContainer />
+            </Route>
+
+            <Route exact path="/admin/otherdetails/:option">
+              <OtherDetailsContainer />
             </Route>
 
             <Route>404</Route>

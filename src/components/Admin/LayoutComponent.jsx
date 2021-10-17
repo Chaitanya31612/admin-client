@@ -33,4 +33,5 @@ const MainContent = styled.div`
 const AdminContent = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGrey3};
   min-height: 92vh;
+  height: 92%;
 `;

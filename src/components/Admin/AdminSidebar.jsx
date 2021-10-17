@@ -61,8 +61,8 @@ const AdminSidebar = () => {
             </menu>
 
             <Dropdown show={menuSet.has(1) ? "block" : "none"}>
-              <Link to="/admin/menus/addmenu">Add Menus</Link>
-              <Link to="/admin/menus/viewmenus">View Menus</Link>
+              <Link to="/admin/menus/add">Add Menus</Link>
+              <Link to="/admin/menus/view">View Menus</Link>
             </Dropdown>
           </MenuDropdown>
 
@@ -74,8 +74,8 @@ const AdminSidebar = () => {
             </menu>
 
             <Dropdown show={menuSet.has(2) ? "block" : "none"}>
-              <Link to="">Add Subject</Link>
-              <Link to="">View Subject</Link>
+              <Link to="/admin/subject/add">Add Subject</Link>
+              <Link to="/admin/subject/view">View Subject</Link>
             </Dropdown>
           </MenuDropdown>
 
@@ -87,8 +87,8 @@ const AdminSidebar = () => {
             </menu>
 
             <Dropdown show={menuSet.has(3) ? "block" : "none"}>
-              <Link to="">Add Videos</Link>
-              <Link to="">View Videos</Link>
+              <Link to="/admin/details/add">Add Videos</Link>
+              <Link to="/admin/details/view">View Videos</Link>
             </Dropdown>
           </MenuDropdown>
 
@@ -100,8 +100,8 @@ const AdminSidebar = () => {
             </menu>
 
             <Dropdown show={menuSet.has(4) ? "block" : "none"}>
-              <Link to="">Add Details</Link>
-              <Link to="">View Details</Link>
+              <Link to="/admin/otherdetails/add">Add Details</Link>
+              <Link to="/admin/otherdetails/view">View Details</Link>
             </Dropdown>
           </MenuDropdown>
         </div>

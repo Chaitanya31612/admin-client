@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ViewLayout } from "../../../styles/components/AdminLayout";
 import {
   Table,
   TableHeading,
@@ -13,32 +14,42 @@ const MainTable = ({ subject: { id, name, topics } }) => {
         <TableHeading>{name}</TableHeading>
 
         {/* {console.log(topics, id, name)} */}
-        {name && (
-          <Table>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Topic</th>
-                <th>Sub Topic</th>
-                <th>Video Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              {topics &&
-                topics.length > 0 &&
-                topics.map((item, index) => (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{item.topic}</td>
-                    <td>{id}</td>
-                    <td>{id}</td>
-                    {/* {subtopics && subtopics.map(({ subitem: { name, link } }) => (
-                  
-                ))} */}
-                  </tr>
-                ))}
-            </tbody>
-          </Table>
+        {name && topics && topics.length > 0 && (
+          <ViewLayout>
+            <Table>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Topic</th>
+                  <th>Sub Topic</th>
+                  <th>Video Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topics &&
+                  topics.length > 0 &&
+                  topics.map((topicItem, index) =>
+                    topicItem.subtopics.map((subtopic) => (
+                      <tr
+                        style={
+                          index % 2 !== 0
+                            ? { backgroundColor: "#eee" }
+                            : { backgroundColor: "#F9F9F9" }
+                        }
+                        key={topicItem.sno}
+                      >
+                        <td>{index + 1}</td>
+                        <td>{topicItem.topic}</td>
+                        <td>{subtopic.name}</td>
+                        <td>
+                          <a href={subtopic.link}>{subtopic.link}</a>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+              </tbody>
+            </Table>
+          </ViewLayout>
         )}
       </Container>
     </Wrapper>

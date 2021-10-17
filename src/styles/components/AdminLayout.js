@@ -5,6 +5,7 @@ export const AdminContentHead = styled.p`
   font-size: 2.5rem;
   font-weight: lighter;
   margin-bottom: 1.5rem;
+  text-align: ${(props) => (props.center && "center") || "initial"};
 `;
 
 export const AdminContentLayout = styled.div`
@@ -14,12 +15,29 @@ export const AdminContentLayout = styled.div`
 export const ViewLayout = styled.div`
   a {
     display: block;
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
     color: ${({ theme }) => theme.colors.darkBlue};
     text-decoration: none;
 
     &:hover {
       color: ${({ theme }) => theme.colors.lightBlue};
+    }
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.1rem;
+
+    .edit {
+      cursor: pointer;
+      color: green;
+    }
+
+    .delete {
+      cursor: pointer;
+      color: red;
     }
   }
 `;
