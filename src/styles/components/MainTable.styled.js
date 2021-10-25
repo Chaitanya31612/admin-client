@@ -7,11 +7,20 @@ export const TableHeading = styled.h3`
   color: #555;
 `;
 
+export const TableSubHeading = styled.h4`
+  text-align: center;
+  text-decoration: underline;
+  margin: 20px 0;
+  color: #888;
+`;
+
 export const Table = styled.table`
   border-collapse: collapse;
-  width: 100%;
+  width: ${(props) => props.center ? "60%" : "100%"};;
   color: #333;
   font-size: 0.9rem;
+  margin-left: ${(props) => props.center ? "auto" : 0};
+  margin-right: ${(props) => props.center ? "auto" : 0};
 
   td,
   th {

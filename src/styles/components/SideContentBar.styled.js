@@ -2,9 +2,15 @@ import styled from "styled-components";
 
 export const SideBarHeading = styled.h3`
   color: ${({ theme }) => theme.colors.primary};
-  text-decoration: underline;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  svg {
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  p {
+    text-decoration: underline;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const SubjectList = styled.ul`

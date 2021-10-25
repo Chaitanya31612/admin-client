@@ -5,11 +5,12 @@ import { MainTable, SideContentBar } from "../../../components/Homepage";
 
 const MainContent = () => {
   const [subject, setSubject] = useState({});
+  const [topic, setTopic] = useState(null);
 
   return (
     <Wrapper>
-      <SideContentBar subject={subject} setSubject={setSubject} />
-      <MainTable subject={subject} />
+      <SideContentBar setSubject={setSubject} setTopic={setTopic} />
+      <MainTable subject={subject} subjectTopic={topic} />
     </Wrapper>
   );
 };
@@ -19,4 +20,5 @@ export default MainContent;
 const Wrapper = styled.div`
   display: flex;
   margin-bottom: 1rem;
+  min-height: 100vh;
 `;

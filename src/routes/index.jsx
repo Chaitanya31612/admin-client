@@ -19,6 +19,7 @@ import axios from "axios";
 import SubjectsContainer from "../containers/Admin/SubjectsContainer";
 import VideoDetailsContainer from "../containers/Admin/VideoDetailsContainer";
 import OtherDetailsContainer from "../containers/Admin/OtherDetailsContainer";
+import TopicsContainer from "../containers/Admin/TopicsContainer";
 
 const theme = {
   colors: {
@@ -94,6 +95,10 @@ export default function App() {
 
             <Route exact path="/admin/subject/:option">
               <SubjectsContainer />
+            </Route>
+
+            <Route exact path="/admin/topics/:option">
+              <TopicsContainer />
             </Route>
 
             <Route exact path="/admin/details/:option">

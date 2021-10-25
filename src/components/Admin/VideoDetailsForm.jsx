@@ -107,7 +107,7 @@ const VideoDetailsForm = () => {
               </Select>
             </FormGroup>
 
-            {selectedTopic === "addnew" && (
+            {selectedSubject !== "" && selectedTopic === "addnew" && (
               <FormGroup>
                 <label htmlFor="topic-name">Topic Name</label>
                 <input

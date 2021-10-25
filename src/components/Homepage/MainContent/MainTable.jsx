@@ -4,52 +4,46 @@ import { ViewLayout } from "../../../styles/components/AdminLayout";
 import {
   Table,
   TableHeading,
+  TableSubHeading,
 } from "../../../styles/components/MainTable.styled";
 import { Container } from "../../../styles/utilities/Container.styled";
 
-const MainTable = ({ subject: { id, name, topics } }) => {
+const MainTable = ({ subject, subjectTopic }) => {
   return (
     <Wrapper id="main">
       <Container>
-        <TableHeading>{name}</TableHeading>
+        <TableHeading>{subject.name}</TableHeading>
 
-        {/* {console.log(topics, id, name)} */}
-        {name && topics && topics.length > 0 && (
-          <ViewLayout>
-            <Table>
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Topic</th>
-                  <th>Sub Topic</th>
-                  <th>Video Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topics &&
-                  topics.length > 0 &&
-                  topics.map((topicItem, index) =>
-                    topicItem.subtopics.map((subtopic) => (
-                      <tr
-                        style={
-                          index % 2 !== 0
-                            ? { backgroundColor: "#eee" }
-                            : { backgroundColor: "#F9F9F9" }
-                        }
-                        key={topicItem.sno}
-                      >
-                        <td>{index + 1}</td>
-                        <td>{topicItem.topic}</td>
-                        <td>{subtopic.name}</td>
-                        <td>
-                          <a href={subtopic.link}>{subtopic.link}</a>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-              </tbody>
-            </Table>
-          </ViewLayout>
+        {subjectTopic !== null && (
+          <>
+            <TableSubHeading>{subjectTopic.topic}</TableSubHeading>
+            {subject.name && subjectTopic && subjectTopic.subtopics.length > 0 && (
+              <ViewLayout>
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Sub Topic</th>
+                      <th>Video Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {subjectTopic.subtopics &&
+                      subjectTopic.subtopics.length > 0 &&
+                      subjectTopic.subtopics.map((subtopic, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{subtopic.name}</td>
+                          <td>
+                            <a href={subtopic.link}>{subtopic.link}</a>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </Table>
+              </ViewLayout>
+            )}
+          </>
         )}
       </Container>
     </Wrapper>

@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import { CgMenuGridR, CgDetailsMore } from "react-icons/cg";
 import { VscNotebook } from "react-icons/vsc";
-import { MdVideoLibrary } from "react-icons/md";
+import { MdVideoLibrary, MdOutlineTopic } from "react-icons/md";
 
 import MainLogo from "../../assets/MainLogo.png";
 import {
@@ -81,25 +81,38 @@ const AdminSidebar = () => {
 
           <MenuDropdown onClick={() => toggleMenu(3)}>
             <menu>
+              <MdOutlineTopic />
+              <p>Topics</p>
+              <AiOutlineRight />
+            </menu>
+
+            <Dropdown show={menuSet.has(3) ? "block" : "none"}>
+              <Link to="/admin/topics/add">Add Topics</Link>
+              <Link to="/admin/topics/view">View Topics</Link>
+            </Dropdown>
+          </MenuDropdown>
+
+          <MenuDropdown onClick={() => toggleMenu(4)}>
+            <menu>
               <MdVideoLibrary />
               <p>Videos</p>
               <AiOutlineRight />
             </menu>
 
-            <Dropdown show={menuSet.has(3) ? "block" : "none"}>
+            <Dropdown show={menuSet.has(4) ? "block" : "none"}>
               <Link to="/admin/details/add">Add Videos</Link>
               <Link to="/admin/details/view">View Videos</Link>
             </Dropdown>
           </MenuDropdown>
 
-          <MenuDropdown onClick={() => toggleMenu(4)}>
+          <MenuDropdown onClick={() => toggleMenu(5)}>
             <menu>
               <CgDetailsMore />
               <p>Others</p>
               <AiOutlineRight />
             </menu>
 
-            <Dropdown show={menuSet.has(4) ? "block" : "none"}>
+            <Dropdown show={menuSet.has(5) ? "block" : "none"}>
               <Link to="/admin/otherdetails/add">Add Details</Link>
               <Link to="/admin/otherdetails/view">View Details</Link>
             </Dropdown>
