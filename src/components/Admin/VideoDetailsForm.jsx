@@ -97,8 +97,8 @@ const VideoDetailsForm = () => {
                 </option>
                 {selectedSubject != "" &&
                   subjectMap[selectedSubject].topics.map((topic, index) => (
-                    <option key={index} value={topic.topic}>
-                      {topic.topic}
+                    <option key={index} value={topic.name}>
+                      {topic.name}
                     </option>
                   ))}
                 {subjects.length > 0 && (

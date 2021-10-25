@@ -61,7 +61,7 @@ const ViewVideoTable = ({ subjectMap }) => {
                       key={topicItem.sno}
                     >
                       <td>{index + 1}</td>
-                      <td>{topicItem.topic}</td>
+                      <td>{topicItem.name}</td>
                       <td>{subtopic.name}</td>
                       <td>
                         <a href={subtopic.link}>{subtopic.link}</a>

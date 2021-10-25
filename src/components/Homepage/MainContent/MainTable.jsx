@@ -16,7 +16,7 @@ const MainTable = ({ subject, subjectTopic }) => {
 
         {subjectTopic !== null && (
           <>
-            <TableSubHeading>{subjectTopic.topic}</TableSubHeading>
+            <TableSubHeading>{subjectTopic.name}</TableSubHeading>
             {subject.name && subjectTopic && subjectTopic.subtopics.length > 0 && (
               <ViewLayout>
                 <Table>

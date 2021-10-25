@@ -34,6 +34,12 @@ const TopicsForm = () => {
     window.location.reload();
   };
 
+  // const removeTopicName = (e, selectedSubject, selectedTopic) => {
+  //   e.preventDefault();
+  //   const removeTopicData = { subject: selectedSubject, topic: selectedTopic };
+  //   dispatch(removeTopic);
+  // };
+
   return (
     <Wrapper>
       {option === "add" && (
@@ -78,7 +84,7 @@ const TopicsForm = () => {
       )}
       {option === "view" && (
         <AdminContentLayout>
-          <AdminContentHead center>View Table</AdminContentHead>
+          <AdminContentHead center>View Topics</AdminContentHead>
           <Form>
             <FormGroup>
               <label htmlFor="subject-select">Select Subject</label>
@@ -109,13 +115,38 @@ const TopicsForm = () => {
                   <thead>
                     <th>S.No</th>
                     <th>Topic</th>
+                    <th>Options</th>
                   </thead>
                   <tbody>
                     {subjectMap[selectedSubject].topics.map(
                       (topicItem, index) => (
                         <tr>
                           <td>{index + 1}</td>
-                          <td>{topicItem.topic}</td>
+                          <td>{topicItem.name}</td>
+                          <td>
+                            <div className="options">
+                              <Link
+                                style={{ padding: 0 }}
+                                to="/admin/subject/update"
+                              >
+                                <RiEdit2Line
+                                  className="edit"
+                                  onClick={() => {
+                                    // setOldDetails(subject);
+                                  }}
+                                />
+                              </Link>
+                              <RiDeleteBin5Line
+                                className="delete"
+                                // onClick={() =>
+                                //   removeTopicName(
+                                //     selectedSubject,
+                                //     selectedTopic
+                                //   )
+                                // }
+                              />
+                            </div>
+                          </td>
                         </tr>
                       )
                     )}

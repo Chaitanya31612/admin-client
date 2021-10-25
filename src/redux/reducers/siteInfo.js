@@ -63,7 +63,7 @@ const siteInfo = (state = initialState, action) => {
       let updateSubject = state.subjects.find(
         (subject) => subject.name == action.payload.subject
       );
-      updateSubject.topics.push({ topic: action.payload.topic, subtopics: [] });
+      updateSubject.topics.push({ topic: action.payload.name, subtopics: [] });
 
       return {
         ...state,
@@ -75,7 +75,7 @@ const siteInfo = (state = initialState, action) => {
         (subject) => subject.name === action.payload.subject
       );
       let updateTopic = updateSubject.topics.find(
-        (topicItem) => topicItem.topic === action.payload.topic
+        (topicItem) => topicItem.name === action.payload.name
       );
       updateTopic.subtopics.push({
         name: action.payload.subtopic,

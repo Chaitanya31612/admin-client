@@ -43,7 +43,7 @@ const SideContentBar = ({ setSubject, setTopic }) => {
               }}
               key={topic.id}
             >
-              {topic.topic}
+              {topic.name}
             </SubjectListItem>
           ))}
         </SubjectList>
