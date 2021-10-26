@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { addSubjectTopic } from "../../redux/actions/siteInfo";
+import swal from "sweetalert";
+import {
+  addSubjectTopic,
+  removeTopic,
+  updateFormData,
+} from "../../redux/actions/siteInfo";
 import {
   AdminContentHead,
   AdminContentLayout,
@@ -30,15 +35,48 @@ const TopicsForm = () => {
   const addTopic = (e) => {
     e.preventDefault();
     const topicData = { subject: selectedSubject, topic: topicName };
+    console.log(topicData);
     dispatch(addSubjectTopic(topicData));
     window.location.reload();
   };
 
-  // const removeTopicName = (e, selectedSubject, selectedTopic) => {
-  //   e.preventDefault();
-  //   const removeTopicData = { subject: selectedSubject, topic: selectedTopic };
-  //   dispatch(removeTopic);
-  // };
+  const removeTopicName = (selectedSubject, selectedTopic) => {
+    const removeTopicData = { subject: selectedSubject, topic: selectedTopic };
+    dispatch(removeTopic(removeTopicData));
+  };
+
+  const updateTopicName = (e, selectedTopic) => {
+    e.preventDefault();
+    // console.log(selectedTopic);
+    swal({
+      text: "Enter Topic Name",
+      content: "input",
+      button: {
+        text: "Update",
+        closeModel: false,
+      },
+    })
+      .then((updatedTopicName) => {
+        if (!updatedTopicName) throw null;
+
+        const updatedTopicData = {
+          subject: selectedSubject,
+          oldTopicName: selectedTopic,
+          newTopicName: updatedTopicName,
+          type: "topic",
+        };
+
+        dispatch(updateFormData(updatedTopicData));
+      })
+      .catch((err) => {
+        if (err) {
+          swal("Oh noes!", "The update request failed!", "error");
+        } else {
+          swal.stopLoading();
+          swal.close();
+        }
+      });
+  };
 
   return (
     <Wrapper>
@@ -125,25 +163,20 @@ const TopicsForm = () => {
                           <td>{topicItem.name}</td>
                           <td>
                             <div className="options">
-                              <Link
-                                style={{ padding: 0 }}
-                                to="/admin/subject/update"
-                              >
-                                <RiEdit2Line
-                                  className="edit"
-                                  onClick={() => {
-                                    // setOldDetails(subject);
-                                  }}
-                                />
-                              </Link>
+                              <RiEdit2Line
+                                className="edit"
+                                onClick={(e) =>
+                                  updateTopicName(e, topicItem.name)
+                                }
+                              />
                               <RiDeleteBin5Line
                                 className="delete"
-                                // onClick={() =>
-                                //   removeTopicName(
-                                //     selectedSubject,
-                                //     selectedTopic
-                                //   )
-                                // }
+                                onClick={() =>
+                                  removeTopicName(
+                                    selectedSubject,
+                                    topicItem.name
+                                  )
+                                }
                               />
                             </div>
                           </td>

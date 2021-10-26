@@ -13,6 +13,8 @@ const ViewVideoTable = ({ subjectMap }) => {
 
   const [selectedSubject, setSelectedSubject] = useState("");
 
+  const [selectedTopic, setSelectedTopic] = useState("");
+
   return (
     <AdminContentLayout>
       <AdminContentHead center>View Table</AdminContentHead>
@@ -35,6 +37,27 @@ const ViewVideoTable = ({ subjectMap }) => {
                 {subject.name}
               </option>
             ))}
+          </Select>
+
+          <label htmlFor="topic-select">Select Topic</label>
+          <Select
+            name="topic-select"
+            id="topic-select"
+            onChange={(e) => setSelectedTopic(e.target.value)}
+            required
+          >
+            <option value="" disabled selected hidden>
+              Select Topic name...
+            </option>
+            {selectedSubject != "" &&
+              subjectMap[selectedSubject].topics.map((topic, index) => (
+                <option key={index} value={topic.name}>
+                  {topic.name}
+                </option>
+              ))}
+            {subjects.length > 0 && (
+              <option value="addnew">Add new topic</option>
+            )}
           </Select>
         </FormGroup>
       </Form>

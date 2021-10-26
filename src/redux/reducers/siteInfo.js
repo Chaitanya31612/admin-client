@@ -9,6 +9,7 @@ import {
   ADDSUBJECTSUBTOPIC,
   UPDATEFORMDETAILS,
   UPDATEOTHERDETAILS,
+  REMOVETOPIC,
 } from "../actions/types";
 
 const initialState = {
@@ -63,7 +64,7 @@ const siteInfo = (state = initialState, action) => {
       let updateSubject = state.subjects.find(
         (subject) => subject.name == action.payload.subject
       );
-      updateSubject.topics.push({ topic: action.payload.name, subtopics: [] });
+      updateSubject.topics.push({ name: action.payload.name, subtopics: [] });
 
       return {
         ...state,
@@ -106,6 +107,14 @@ const siteInfo = (state = initialState, action) => {
         ...state,
         navlinks: { ...state.navlinks },
         subjects: { ...state.subjects },
+      };
+    }
+    case REMOVETOPIC: {
+      return {
+        ...state,
+        subjects: state.subjects
+          .find((subject) => subject.name === action.payload.subject)
+          .topics.filter((topic) => topic.name != action.payload.topic),
       };
     }
     case UPDATEOTHERDETAILS: {

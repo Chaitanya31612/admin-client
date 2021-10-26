@@ -19,6 +19,5 @@ export default MainContent;
 
 const Wrapper = styled.div`
   display: flex;
-  margin-bottom: 1rem;
   min-height: 100vh;
 `;

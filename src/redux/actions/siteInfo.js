@@ -9,6 +9,7 @@ import {
   ADDSUBJECTSUBTOPIC,
   UPDATEOTHERDETAILS,
   UPDATEFORMDETAILS,
+  REMOVETOPIC,
 } from "../actions/types";
 import axios from "axios";
 import swal from "sweetalert";
@@ -136,9 +137,36 @@ export const updateFormData = (updateDetails) => async (dispatch) => {
       `${process.env.REACT_APP_BASE_URL}/api/admin/updatedetails`,
       updateDetails
     );
-    swal("Success", "Form updated successfully", "success");
+    await swal("Success", "Form updated successfully", "success");
+    window.location.reload();
     return dispatch({ type: UPDATEFORMDETAILS, payload: updateDetails });
   } catch (err) {
     swal("Error in updating", "Try Again", "error");
+  }
+};
+
+export const removeTopic = (removeTopicData) => async (dispatch) => {
+  try {
+    console.log(removeTopicData);
+    const willdelete = await swal(
+      `Delete ${removeTopicData.topic}`,
+      `Are you sure you want to delete ${removeTopicData.topic}`,
+      "warning"
+    );
+    if (willdelete) {
+      await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/removetopic`,
+        removeTopicData
+      );
+      await swal(
+        "Success",
+        `${removeTopicData.topic.name} removed successfully`,
+        "success"
+      );
+      window.location.reload();
+      return dispatch({ type: REMOVETOPIC, payload: removeTopicData });
+    }
+  } catch (err) {
+    swal("Error removing topic", "Try Again", "error");
   }
 };
