@@ -108,13 +108,14 @@ export const addSubjectTopic = (topicData) => async (dispatch) => {
 export const addSubjectSubtopic = (subtopicData) => async (dispatch) => {
   try {
     await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/api/admin/addsubjecsubtopic`,
+      `${process.env.REACT_APP_BASE_URL}/api/admin/addsubjectsubtopic`,
       subtopicData
     );
-    swal("Success", "Subject Subtopic added successfully", "success");
+    await swal("Success", "Subject Subtopic added successfully", "success");
+    window.location.reload();
     return dispatch({ type: ADDSUBJECTSUBTOPIC, payload: subtopicData });
   } catch (err) {
-    swal("Error in adding Subject Subtopic", "Try Again", "error");
+    // swal("Error in adding Subject Subtopic", "Try Again", "error");
   }
 };
 
@@ -141,7 +142,7 @@ export const updateFormData = (updateDetails) => async (dispatch) => {
     window.location.reload();
     return dispatch({ type: UPDATEFORMDETAILS, payload: updateDetails });
   } catch (err) {
-    swal("Error in updating", "Try Again", "error");
+    // swal("Error in updating", "Try Again", "error");
   }
 };
 
@@ -167,6 +168,32 @@ export const removeTopic = (removeTopicData) => async (dispatch) => {
       return dispatch({ type: REMOVETOPIC, payload: removeTopicData });
     }
   } catch (err) {
-    swal("Error removing topic", "Try Again", "error");
+    // swal("Error removing topic", "Try Again", "error");
+  }
+};
+
+export const removeSubtopic = (removeSubtopicData) => async (dispatch) => {
+  try {
+    console.log(removeSubtopicData);
+    const willdelete = await swal(
+      `Delete ${removeSubtopicData.subtopic.name}`,
+      `Are you sure you want to delete ${removeSubtopicData.subtopic.name}`,
+      "warning"
+    );
+    if (willdelete) {
+      await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/removesubtopic`,
+        removeSubtopicData
+      );
+      await swal(
+        "Success",
+        `${removeSubtopicData.topic.name} removed successfully`,
+        "success"
+      );
+      window.location.reload();
+      return dispatch({ type: REMOVETOPIC, payload: removeSubtopicData });
+    }
+  } catch (err) {
+    // swal("Error removing topic", "Try Again", "error");
   }
 };

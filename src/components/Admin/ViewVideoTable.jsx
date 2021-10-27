@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+// import swal from "sweetalert";
+import { removeSubtopic, updateFormData } from "../../redux/actions/siteInfo";
 import {
   AdminContentHead,
   AdminContentLayout,
@@ -9,11 +13,51 @@ import { Table } from "../../styles/components/MainTable.styled";
 import { Form, FormGroup, Select } from "../../styles/utilities/Form.styled";
 
 const ViewVideoTable = ({ subjectMap }) => {
+  const dispatch = useDispatch();
   const subjects = useSelector((state) => state.siteInfo.subjects);
 
   const [selectedSubject, setSelectedSubject] = useState("");
 
   const [selectedTopic, setSelectedTopic] = useState("");
+
+  const updateSubtopicName = async (e, selectedTopic, subtopic) => {
+    e.preventDefault();
+    const { value: formValues } = await Swal.fire({
+      title: "Update Values",
+      html:
+        '<input id="swal-input1" class="swal2-input" placeholder="Subtopic Name">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="Subtopic Link">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value,
+        ];
+      },
+    });
+
+    if (formValues) {
+      console.log(formValues);
+      const updatedTopicData = {
+        subject: selectedSubject,
+        topic: selectedTopic,
+        subtopic,
+        newSubtopicData: { name: formValues[0], link: formValues[1] },
+        type: "subtopic",
+      };
+
+      dispatch(updateFormData(updatedTopicData));
+    }
+  };
+
+  const removeSubtopicName = (selectedSubject, selectedTopic, subtopic) => {
+    const removeSubtopicData = {
+      subject: selectedSubject,
+      topic: selectedTopic,
+      subtopic: subtopic,
+    };
+    dispatch(removeSubtopic(removeSubtopicData));
+  };
 
   return (
     <AdminContentLayout>
@@ -55,43 +99,54 @@ const ViewVideoTable = ({ subjectMap }) => {
                   {topic.name}
                 </option>
               ))}
-            {subjects.length > 0 && (
-              <option value="addnew">Add new topic</option>
-            )}
           </Select>
         </FormGroup>
       </Form>
-      {subjectMap[selectedSubject] &&
+      {selectedSubject &&
+        selectedTopic &&
+        subjectMap[selectedSubject] &&
         subjectMap[selectedSubject].topics &&
         subjectMap[selectedSubject].topics.length > 0 && (
           <ViewLayout>
             <Table>
               <thead>
                 <th>S.No</th>
-                <th>Topic</th>
                 <th>Sub Topic</th>
                 <th>Video Link</th>
+                <th>Options</th>
               </thead>
               <tbody>
-                {subjectMap[selectedSubject].topics.map((topicItem, index) =>
-                  topicItem.subtopics.map((subtopic) => (
-                    <tr
-                      style={
-                        index % 2 !== 0
-                          ? { backgroundColor: "#eee" }
-                          : { backgroundColor: "#F9F9F9" }
-                      }
-                      key={topicItem.sno}
-                    >
+                {subjectMap[selectedSubject].topics
+                  .find((topic) => topic.name === selectedTopic)
+                  .subtopics.map((subtopic, index) => (
+                    <tr>
                       <td>{index + 1}</td>
-                      <td>{topicItem.name}</td>
                       <td>{subtopic.name}</td>
                       <td>
                         <a href={subtopic.link}>{subtopic.link}</a>
                       </td>
+                      <td>
+                        <div className="options">
+                          <RiEdit2Line
+                            className="edit"
+                            onClick={(e) => {
+                              updateSubtopicName(e, selectedTopic, subtopic);
+                            }}
+                          />
+                          <RiDeleteBin5Line
+                            className="delete"
+                            onClick={() =>
+                              removeSubtopicName(
+                                selectedSubject,
+                                selectedTopic,
+                                subtopic
+                              )
+                            }
+                          />
+                        </div>
+                      </td>
                     </tr>
-                  ))
-                )}
+                  ))}
               </tbody>
             </Table>
           </ViewLayout>
