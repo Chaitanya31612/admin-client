@@ -65,13 +65,17 @@ export const MenuDropdown = styled.div`
   position: relative;
   display: block;
   menu {
-    color: white;
+    color: #f4f1f1;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     font-weight: bold;
     margin-bottom: 2rem;
+
+    &:hover {
+      color: white;
+    }
 
     p {
       padding: 0 10px;
