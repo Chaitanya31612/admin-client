@@ -24,7 +24,7 @@ const MainHeaderLogo = () => {
 
         <ButtonGroup>
           <Button color={theme.colors.primary}>
-            <MenuLink color={theme.colors.primary} href="/login">
+            <MenuLink color={theme.colors.primary} href="/admin">
               Login
             </MenuLink>
           </Button>
